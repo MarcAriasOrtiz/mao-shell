@@ -85,7 +85,7 @@ The following table provides a high-level overview of project progression.
 
 | Phase | Name | Planning status | Progress |
 |---|---|---|---|
-| P0 | Project Foundation | IN PROGRESS | 14% (1 of 7 tasks) |
+| P0 | Project Foundation | IN PROGRESS | 29% (2 of 7 tasks) |
 | P1 | Core Architecture | NOT PLANNED | — |
 | P2 | Shell Foundation | NOT PLANNED | — |
 | P3 | System Integrations | NOT PLANNED | — |
@@ -143,7 +143,7 @@ Inspect the existing Arch Linux development environment and identify the install
 
 ## P0-002 — Inspect and Establish Repository Structure
 
-- **Status:** PENDING
+- **Status:** COMPLETED
 - **Priority:** HIGH
 - **Dependencies:** P0-001
 
@@ -153,12 +153,12 @@ Inspect the existing repository and establish the initial directory structure ac
 
 **Acceptance criteria:**
 
-- [ ] Existing files and directories have been inspected.
-- [ ] Project structure is consistent with `DESIGN_PATTERNS.md`.
-- [ ] Application entry point location is established.
-- [ ] Core, services, features and reusable UI responsibilities have clear locations.
-- [ ] Documentation and development tooling locations are established.
-- [ ] No existing user data or unrelated configuration is overwritten.
+- [x] Existing files and directories have been inspected.
+- [x] Project structure is consistent with `DESIGN_PATTERNS.md`.
+- [x] Application entry point location is established.
+- [x] Core, services, features and reusable UI responsibilities have clear locations.
+- [x] Documentation and development tooling locations are established.
+- [x] No existing user data or unrelated configuration is overwritten.
 
 **Validation:**
 
@@ -166,9 +166,9 @@ Inspect the existing repository and establish the initial directory structure ac
 - Verify that each directory has a defined responsibility.
 - Identify unnecessary duplication or premature abstractions.
 
-**Evidence:** Repository structure review.
+**Evidence:** Repository structure review. The repository tree was listed (`find`, excluding `.git`). Current content matches the documented scope: root documents, `.opencode/skills/`, `docs/validation/` (empty) and configuration files. No source directories exist yet, which is intentional: DESIGN_PATTERNS §20 creates directories only when the phase that needs them begins.
 
-**Notes:** The canonical repository layout is defined in `DESIGN_PATTERNS.md` §20 (audit finding S-01). Task status remains `PENDING` until the structure is implemented and reviewed.
+**Notes:** The canonical layout is defined in `DESIGN_PATTERNS.md` §20 (audit finding S-01). `shell.qml` is created in P0-003, and `scripts/` in P0-005.
 
 ## P0-003 — Establish the Minimal Quickshell Entry Point
 
