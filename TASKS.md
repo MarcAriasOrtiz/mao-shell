@@ -85,7 +85,7 @@ The following table provides a high-level overview of project progression.
 
 | Phase | Name | Planning status | Progress |
 |---|---|---|---|
-| P0 | Project Foundation | IN PROGRESS | 29% (2 of 7 tasks) |
+| P0 | Project Foundation | IN PROGRESS | 43% (3 of 7 tasks) |
 | P1 | Core Architecture | NOT PLANNED | — |
 | P2 | Shell Foundation | NOT PLANNED | — |
 | P3 | System Integrations | NOT PLANNED | — |
@@ -172,7 +172,7 @@ Inspect the existing repository and establish the initial directory structure ac
 
 ## P0-003 — Establish the Minimal Quickshell Entry Point
 
-- **Status:** VALIDATION
+- **Status:** COMPLETED
 - **Priority:** HIGH
 - **Dependencies:** P0-001, P0-002
 
@@ -185,7 +185,7 @@ Create the initial Quickshell entry point and verify that the application can lo
 - [x] The application entry point is established as `shell.qml`.
 - [x] The minimal QML structure follows the installed Quickshell API.
 - [x] The shell loads without QML errors.
-- [ ] Application startup and shutdown behave correctly. Startup verified. Shutdown only partially verified: the process ended on SIGTERM and the log shows no shutdown line. Needs a clean-shutdown check.
+- [x] Application startup and shutdown behave correctly. Startup and shutdown verified in a second isolated run, see Evidence.
 - [x] The initial implementation does not introduce unnecessary features.
 - [x] The existing desktop session remains usable during development.
 
@@ -203,7 +203,8 @@ Create the initial Quickshell entry point and verify that the application can lo
 - Log: no QML errors. One Qt warning about registering the application ID with the desktop portal, which does not affect this test.
 - The user's session was not touched: the outer Hyprland (`HDMI-A-1`) stayed on the same monitor, and Quickshell never ran on `wayland-1`.
 - Stopping: Quickshell was ended with SIGTERM, then the nested Hyprland with SIGTERM. Both PIDs were checked against their command lines first. Afterwards `wayland-2` was gone.
-- Not verified: clean shutdown logging, visual output (an empty `ShellRoot` shows no surface), and multi-monitor behaviour.
+- Clean shutdown (second run, same isolation): `qs kill --pid` stopped the instance, and the log ends with `Exiting due to IPC request.` The nested Hyprland was then stopped with SIGTERM.
+- Not verified: visual output (an empty `ShellRoot` shows no surface), and multi-monitor behaviour. Neither is required by the acceptance criteria.
 - Note: `/tmp/opencode/mao-dev/hyprland.conf` is a leftover from an invalid first attempt (hyprlang syntax; 0.57 uses Lua). It is not used.
 
 ## P0-004 — Establish Development Conventions
