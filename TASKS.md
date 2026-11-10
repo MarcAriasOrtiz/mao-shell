@@ -85,7 +85,7 @@ The following table provides a high-level overview of project progression.
 
 | Phase | Name | Planning status | Progress |
 |---|---|---|---|
-| P0 | Project Foundation | PLANNED | 0% |
+| P0 | Project Foundation | IN PROGRESS | 14% (1 of 7 tasks) |
 | P1 | Core Architecture | NOT PLANNED | — |
 | P2 | Shell Foundation | NOT PLANNED | — |
 | P3 | System Integrations | NOT PLANNED | — |
@@ -104,11 +104,11 @@ A phase must not be treated as complete until its milestone requirements in `ROA
 
 **Objective:** Establish a reproducible, organized and validated foundation for mao-shell development.
 
-**Phase status:** PLANNED (no P0 task has started)
+**Phase status:** IN PROGRESS (P0-001 completed)
 
 ## P0-001 — Inspect the Development Environment
 
-- **Status:** PENDING
+- **Status:** COMPLETED
 - **Priority:** HIGH
 - **Dependencies:** None
 
@@ -118,12 +118,12 @@ Inspect the existing Arch Linux development environment and identify the install
 
 **Acceptance criteria:**
 
-- [ ] Installed Quickshell version is identified.
-- [ ] Relevant Qt and QML runtime versions are identified.
-- [ ] Wayland and Hyprland environment are verified.
-- [ ] Available development and validation tools are inventoried.
-- [ ] Missing dependencies are documented.
-- [ ] No packages are installed or system configuration modified without authorization.
+- [x] Installed Quickshell version is identified.
+- [x] Relevant Qt and QML runtime versions are identified.
+- [x] Wayland and Hyprland environment are verified.
+- [x] Available development and validation tools are inventoried.
+- [x] Missing dependencies are documented.
+- [x] No packages are installed or system configuration modified without authorization.
 
 **Validation:**
 
@@ -131,7 +131,15 @@ Inspect the existing Arch Linux development environment and identify the install
 - Confirm the current desktop session and runtime environment.
 - Record relevant compatibility limitations.
 
-**Evidence:** Environment inspection report.
+**Evidence:** Environment inspection report (2026-11, read-only, no changes made):
+
+- Quickshell 0.3.2-1 (Arch package), `/usr/bin/qs`. Linked to Qt6 (Quick, Qml, Wayland Client, Widgets, Network). No instance running. `qs list` reports no `shell.qml` in the default config path.
+- Qt 6.12.0: `qt6-base-6.12.0-3`, `qt6-declarative-6.12.0-4`, `qt6-wayland-6.12.0-1`. Note: `qmllint --version` prints `1.0`, which is the tool's own version, not the Qt version.
+- Session: Wayland (`XDG_SESSION_TYPE=wayland`), `XDG_CURRENT_DESKTOP=Hyprland`, kernel 7.2.14-arch1-1.
+- Hyprland 0.57.0-3, reached through `hyprctl`. One monitor, HDMI-A-1, 3440x1440@59.999 Hz, scale 1. A top reserved area of 39 px is present; its source was not identified.
+- Tools present: wallust 3.5.2, qmllint (qt6-declarative), ShellCheck 0.11.0, cava 1.0.0, flameshot 14.0.0, hyprlock 0.9.7, dunst 1.13.2, cliphist 0.7.0, wl-clipboard 2.3.0, yay 13.1.0, PipeWire 1.6.10, WirePlumber 0.5.18, BlueZ 5.87, NetworkManager 1.58.1, grim 1.5.0, slurp 1.5.0.
+- Missing: `checkupdates` (pacman-contrib). This affects the non-root update check (COMPONENT_SPECS §17), to be resolved in Phase 3.
+- Limitations: no Quickshell API has been verified yet; that belongs to P0-003.
 
 ## P0-002 — Inspect and Establish Repository Structure
 
