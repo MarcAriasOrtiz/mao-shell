@@ -1,0 +1,76 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "ROADMAP.md",
+    "TASKS.md",
+    "COMPONENT_SPECS.md",
+    "DESIGN_PATTERNS.md"
+  ],
+  "permissions": [
+    {
+      "action": "shell",
+      "resource": "*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "git status *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git diff *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git log *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "sudo *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "pacman *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "yay *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git reset --hard *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git clean *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git push *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -rf *",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "/home/mao/arch-dotfiles/**",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "/home/mao/.config/hypr/**",
+      "effect": "deny"
+    }
+  ]
+}
