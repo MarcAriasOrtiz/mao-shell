@@ -2590,7 +2590,9 @@ Advanced functionality should be added progressively without compromising the sh
 | Colour appearance | Dark only, derived from Wallust and the wallpaper. No light mode is required (DESIGN_PATTERNS §1). |
 | Notification daemon | dunst is kept. Its appearance will be customised later (§22.1). |
 | Screenshot tool | flameshot (§24.1). |
-| Clipboard manager | Pending. No clipboard manager is installed (§26.2). |
+| Clipboard manager | cliphist, installed. It requires `wl-clipboard`, which is not yet confirmed (§26.2). |
+| Versioning | SemVer (`MAJOR.MINOR.PATCH`). Development versions are `0.x.y`. `1.0.0` is the first stable release after Phase 6. The version lives in a single `VERSION` file (§35.8). |
+| Version source | The GitHub repository `git@github.com:MarcAriasOrtiz/mao-shell.git`, using release tags. The 24-hour check reads the latest tag (§35.8). |
 | AUR helper and updates | yay. The check runs without root; applying updates requires root and is started by the user in a terminal (§17). |
 | Update check interval | Every 24 hours for mao-shell versions (§35.8). OS checks remain every 3 hours (§17.4). |
 | Weather geolocation | Automatic IP geolocation enabled by default, and the user can disable it (§16.4). |
@@ -2605,4 +2607,4 @@ Advanced functionality should be added progressively without compromising the sh
 | Quickshell | 0.3.2 installed. APIs are verified against this version (AGENTS §6). |
 | Licence | MIT (`LICENSE`). |
 
-Still pending: clipboard manager, versioning scheme (§37), and performance budgets, which are set by measurement in Phase 6 and not invented in advance (project-validation §12.2).
+Still pending: confirmation of `wl-clipboard`, and performance budgets, which are set by measurement in Phase 6 and not invented in advance (project-validation §12.2).
