@@ -687,6 +687,56 @@ mao-shell/
 
 ---
 
+## 21. Development Conventions
+
+These conventions apply to all code and documentation. Rules marked *validate in P0-005* depend on tooling that P0-005 runs for the first time.
+
+### 21.1 Naming
+
+- **Directories:** lowercase kebab-case (`control-center`, `lock-screen`), as in §20.
+- **QML files:** PascalCase, named after the type they declare (`ActionButton.qml`). One visual component per file. The entry point is the exception: it is `shell.qml`, as fixed by AGENTS §5.
+- **Service files:** PascalCase with the `Service` suffix (`AudioService.qml`).
+- **JavaScript files:** camelCase (`formatDuration.js`).
+- **Shell scripts:** kebab-case with `.sh` (`check.sh`, `install.sh`).
+- **Properties, functions and object ids:** camelCase. Ids name the role of the object (`root`, `label`), not its type.
+- **Signals:** camelCase, named for the event (`clicked`, `valueChanged`).
+- **Theme tokens:** camelCase semantic names from §1 (`surfaceElevated`, `textMuted`).
+- **Configuration keys in JSON:** camelCase.
+- **Translation keys:** lowercase, dot-separated by area (`bar.clock.label`).
+- **Component names** must describe purpose, not appearance. Avoid prefixes that describe the project or the framework.
+
+### 21.2 QML and JavaScript organisation
+
+- Import order: Quickshell modules first, then Qt modules, then project imports.
+- A module imports services and components only through their public interfaces (§3). It never imports another module's internal files.
+- Injected dependencies are declared with `required property`, for example `required property var theme`.
+- Presentation stays in QML. Pure logic (no QML objects) goes to `.js` files, marked with `.pragma library` when it is stateless.
+- Avoid global mutable state in JavaScript (AGENTS §6).
+- Comments explain non-obvious decisions only (AGENTS, code comments rule).
+
+### 21.3 Shell scripts
+
+- Start with `#!/usr/bin/env bash` and `set -euo pipefail`.
+- Pass arguments as arrays. Never interpolate user-controlled values into a command string (§9).
+- Every script must pass `bash -n` and ShellCheck (AGENTS §17). *Validate in P0-005.*
+
+### 21.4 Git practice
+
+- Commit messages start with `Add:`, `Fix:` or `Feat:` (AGENTS §19).
+- Each commit is one logical change. Documentation and code for the same task may share a commit.
+- Commit only when the user has authorized commits for the task (AGENTS §26).
+- Never commit validation evidence, logs, screenshots or local configuration. `.gitignore` covers these.
+- Release tags use `vMAJOR.MINOR.PATCH`, following SemVer (`COMPONENT_SPECS.md` §41).
+- `master` is the integration branch. A branching strategy is defined when there is more than one contributor.
+
+### 21.5 Validation tooling (*validate in P0-005*)
+
+- QML: `qmllint`, from `qt6-declarative`, over `shell.qml` and the modules.
+- Scripts: `bash -n` and ShellCheck.
+- Runtime: the isolated nested-Hyprland procedure used in P0-003.
+
+---
+
 ## Final Principle
 
 mao-shell must be built as a cohesive desktop shell, not as a collection of unrelated widgets.

@@ -85,7 +85,7 @@ The following table provides a high-level overview of project progression.
 
 | Phase | Name | Planning status | Progress |
 |---|---|---|---|
-| P0 | Project Foundation | IN PROGRESS | 43% (3 of 7 tasks) |
+| P0 | Project Foundation | IN PROGRESS | 57% (4 of 7 tasks) |
 | P1 | Core Architecture | NOT PLANNED | — |
 | P2 | Shell Foundation | NOT PLANNED | — |
 | P3 | System Integrations | NOT PLANNED | — |
@@ -209,7 +209,7 @@ Create the initial Quickshell entry point and verify that the application can lo
 
 ## P0-004 — Establish Development Conventions
 
-- **Status:** PENDING
+- **Status:** COMPLETED
 - **Priority:** HIGH
 - **Dependencies:** P0-002
 
@@ -219,18 +219,23 @@ Establish practical development conventions for source files, naming, imports, c
 
 **Acceptance criteria:**
 
-- [ ] Naming conventions are consistent.
-- [ ] QML and JavaScript conventions are documented or referenced.
-- [ ] File organization follows the established architecture.
-- [ ] Git practices avoid committing temporary or generated files unnecessarily.
-- [ ] Existing agent instructions are consistent with the project conventions.
+- [x] Naming conventions are consistent.
+- [x] QML and JavaScript conventions are documented or referenced.
+- [x] File organization follows the established architecture.
+- [x] Git practices avoid committing temporary or generated files unnecessarily.
+- [x] Existing agent instructions are consistent with the project conventions.
 
 **Validation:**
 
 - Review conventions against `AGENTS.md` and `DESIGN_PATTERNS.md`.
 - Verify that the conventions are practical for the current repository.
 
-**Evidence:** Development conventions review.
+**Evidence:** Development conventions review, documented in `DESIGN_PATTERNS.md` §21.
+
+- Checked against AGENTS §5 (structure), §6 (JavaScript), §17 (checks), §19 (commits) and §26 (authorization). No contradictions found.
+- Checked against the current repository: `shell.qml` (entry point, an exception fixed by AGENTS §5), root documents and the skills. All match §20 and §21.
+- Found and fixed during review: the PascalCase rule for QML files conflicted with `shell.qml`, so an explicit exception was added. The `qml-component` skill's naming note now points to §21.1.
+- Validation tooling (§21.5) belongs to P0-005 and is not claimed here.
 
 ## P0-005 — Establish Basic Validation Tooling
 

@@ -1169,7 +1169,7 @@ The following examples illustrate preferred patterns.
 
 They are architectural examples. Verify all APIs and types against the installed Qt and Quickshell versions before using them.
 
-Component names such as `ActionButton` are illustrative until the naming convention is defined (P0-004). Colours are expressed as semantic tokens from `DESIGN_PATTERNS.md` §1, supplied through a `theme` object. The mechanism that provides that object is defined in Phase 1 with the theme service. Colours are derived from Wallust and the wallpaper, so no colour value may be hardcoded in a component.
+Component names such as `ActionButton` are illustrative. Naming follows `DESIGN_PATTERNS.md` §21.1. Colours are expressed as semantic tokens from `DESIGN_PATTERNS.md` §1, supplied through a `theme` object. The mechanism that provides that object is defined in Phase 1 with the theme service. Colours are derived from Wallust and the wallpaper, so no colour value may be hardcoded in a component.
 
 ### 23.1 Example: Reusable Button
 
