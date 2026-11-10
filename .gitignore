@@ -1,0 +1,20 @@
+# Temporary and editor files
+*.swp
+*~
+*.tmp
+.DS_Store
+
+# Logs and runtime output
+*.log
+
+# Validation evidence stays out of Git (see DESIGN_PATTERNS.md §20)
+docs/validation/**/*.png
+docs/validation/**/*.jpg
+docs/validation/**/*.log
+docs/validation/**/*.csv
+
+# OpenCode local dependencies
+.opencode/node_modules/
+
+# QML tooling caches
+.qmlls.ini
