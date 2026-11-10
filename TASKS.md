@@ -172,7 +172,7 @@ Inspect the existing repository and establish the initial directory structure ac
 
 ## P0-003 — Establish the Minimal Quickshell Entry Point
 
-- **Status:** PENDING
+- **Status:** VALIDATION
 - **Priority:** HIGH
 - **Dependencies:** P0-001, P0-002
 
@@ -182,12 +182,12 @@ Create the initial Quickshell entry point and verify that the application can lo
 
 **Acceptance criteria:**
 
-- [ ] The application entry point is established as `shell.qml`.
-- [ ] The minimal QML structure follows the installed Quickshell API.
-- [ ] The shell loads without QML errors.
-- [ ] Application startup and shutdown behave correctly.
-- [ ] The initial implementation does not introduce unnecessary features.
-- [ ] The existing desktop session remains usable during development.
+- [x] The application entry point is established as `shell.qml`.
+- [x] The minimal QML structure follows the installed Quickshell API.
+- [x] The shell loads without QML errors.
+- [ ] Application startup and shutdown behave correctly. Startup verified. Shutdown only partially verified: the process ended on SIGTERM and the log shows no shutdown line. Needs a clean-shutdown check.
+- [x] The initial implementation does not introduce unnecessary features.
+- [x] The existing desktop session remains usable during development.
 
 **Validation:**
 
@@ -196,7 +196,15 @@ Create the initial Quickshell entry point and verify that the application can lo
 - Verify clean shutdown.
 - Check for QML warnings and runtime errors.
 
-**Evidence:** Initial runtime validation report.
+**Evidence:** Initial runtime validation report (isolated test, Nov 2026):
+
+- `shell.qml` at the repository root: `import Quickshell` and an empty `ShellRoot {}`. `ShellRoot` is exported as `Quickshell/ShellRoot 0.0` in `/usr/lib/qt6/qml/Quickshell/quickshell-core.qmltypes`. `qmllint shell.qml` reported no warnings.
+- Isolated runtime: a nested Hyprland 0.57.0 started from `/tmp/opencode/mao-dev/hyprland.lua` (`config ok` from `--verify-config`), inside the user's Wayland session. Its own socket was `wayland-2`. Quickshell ran with `qs -p` on `wayland-2` and reported "Configuration Loaded". `qs list` showed the instance on `wayland-2`.
+- Log: no QML errors. One Qt warning about registering the application ID with the desktop portal, which does not affect this test.
+- The user's session was not touched: the outer Hyprland (`HDMI-A-1`) stayed on the same monitor, and Quickshell never ran on `wayland-1`.
+- Stopping: Quickshell was ended with SIGTERM, then the nested Hyprland with SIGTERM. Both PIDs were checked against their command lines first. Afterwards `wayland-2` was gone.
+- Not verified: clean shutdown logging, visual output (an empty `ShellRoot` shows no surface), and multi-monitor behaviour.
+- Note: `/tmp/opencode/mao-dev/hyprland.conf` is a leftover from an invalid first attempt (hyprlang syntax; 0.57 uses Lua). It is not used.
 
 ## P0-004 — Establish Development Conventions
 
